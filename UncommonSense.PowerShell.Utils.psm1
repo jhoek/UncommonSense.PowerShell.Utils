@@ -5,37 +5,38 @@ function Format-Object
     param
     (
         [Parameter(Mandatory)][string]$Caption,
-        [Parameter(ValueFromPipeline)][PSObject[]]$Value,
+        [Parameter(Mandatory)]$Value,
         [int]$Indentation = 0
     )
 
-    process 
+    Write-Host $Value.GetType().FullName -ForegroundColor DarkYellow
+
+    switch($true) 
     {
-        foreach($Item in $Value)
+        # Hashtable
+        ($Value -is [System.Collections.IDictionary]) 
         {
-            switch($true) 
+            Write-Output "$("  " * $Indentation)$Caption" 
+
+            foreach($Key in $Value.Keys)
             {
-                # Hashtable
-                ($Item -is [System.Collections.IDictionary]) 
-                {
-                    Write-Output "$("  " * $Indentation)$Caption" 
-                    $Item.Keys | Foreach-Object { Format-Object -Caption $_ -Value $Item[$_] -Indentation ($Indentation + 1) } 
-                    break
-                }
-
-                # Collection
-                ($Item -is [System.Collections.ICollection]) 
-                { 
-                    Write-Output "$("  " * $Indentation)$Caption" 
-                    $Item | ForEach-Object { Format-Object -Caption $_.ToString() -Value $_ -Indentation ($Indentation + 1) }                                         
-                    break 
-                }
-
-                default 
-                {
-                    Write-Output "$("  " * $Indentation)$($Caption)=$($Item.ToString())"
-                }
+                Format-Object -Caption $Key -Value $Value[$Key] -Indentation ($Indentation + 1) 
             }
+                    
+            break
+        }
+
+        # Collection
+        ($Value -is [System.Collections.ICollection]) 
+        { 
+            Write-Output "$("  " * $Indentation)$Caption" 
+            $Value | ForEach-Object { Format-Object -Caption $_.ToString() -Value $_ -Indentation ($Indentation + 1) }                                         
+            break 
+        }
+
+        default 
+        {
+            Write-Output "$("  " * $Indentation)$($value.ToString())"
         }
     }
 }
