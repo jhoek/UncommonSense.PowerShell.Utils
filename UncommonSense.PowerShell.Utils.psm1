@@ -10,7 +10,7 @@ Set-Alias -Name grep -Value Find-InFiles
 
 Export-ModuleMember `
     -Function Find-Application, Find-InFiles, Format-Object, Format-HashTable, Get-ValueOrDefault, Get-ContiguousRange `
-    -Alias which, grep
+    -Alias which, grep, OrOtherwise, ??
 
 
 
