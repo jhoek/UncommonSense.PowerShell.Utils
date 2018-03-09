@@ -23,9 +23,9 @@
 .EXAMPLE
 ($true | ?? G) -eq $true # returns True
 #>
-function OrOtherwise
+function Get-ValueOrDefault
 {
-    [Alias('??')]
+    [Alias('OrOtherwise', '??')]
     param
     (
         [Parameter(ValueFromPipeline)]
