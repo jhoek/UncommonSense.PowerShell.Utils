@@ -1,3 +1,5 @@
+# .SYNOPSIS
+# Returns the first item of the first contiguous range of items of the specified length
 function Get-ContiguousRange
 {
     [CmdletBinding()]

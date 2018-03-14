@@ -1,3 +1,5 @@
+# .Synopsis
+# Performs an (optionally recursive) file search based on a regular expression
 function Find-InFiles 
 {
     param
