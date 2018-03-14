@@ -1,3 +1,5 @@
+# .SYNOPSIS
+# Pretty-prints a (nested) hash table
 function Format-HashTable 
 {
     param

@@ -1,3 +1,5 @@
+# .SYNOPSIS
+# Pretty-prints a (nested) object
 function Format-Object 
 {
     param

@@ -6,18 +6,18 @@ PowerShell utility cmdlets
 
 | Command | Synopsis |
 | ------- | -------- |
-| [Find-Application](#Find-Application) | Shows in which folder (in particular native) commands reside |
-| [Find-InFiles](#Find-InFiles) | Find-InFiles [-Pattern] <string> [-Path <Object>] [-Filter <string>] [-Recurse] [-Context <int[]>] [<CommonParameters>] |
-| [Format-HashTable](#Format-HashTable) | Format-HashTable [-HashTable] <IDictionary[]> [[-Indentation] <int>] [<CommonParameters>] |
-| [Format-Object](#Format-Object) | Format-Object [-Caption] <string> [-Value] <Object> [[-Indentation] <int>] [<CommonParameters>] |
-| [Get-ContiguousRange](#Get-ContiguousRange) | Get-ContiguousRange [-Items] <int[]> [[-RequiredLength] <int>] [<CommonParameters>] |
-| [Get-ValueOrDefault](#Get-ValueOrDefault) |  |
-| [Set-BreakOnError](#Set-BreakOnError) | Set-BreakOnError |
+| [Find-Application](#Find-Application) | Shows in which folder the given (native) command resides |
+| [Find-InFiles](#Find-InFiles) | Performs an (optionally recursive) file search based on a regular expression |
+| [Format-HashTable](#Format-HashTable) | Pretty-prints a (nested) hash table |
+| [Format-Object](#Format-Object) | Pretty-prints a (nested) object |
+| [Get-ContiguousRange](#Get-ContiguousRange) | Returns the first item of the first contiguous range of items of the specified length |
+| [Get-ValueOrDefault](#Get-ValueOrDefault) | Returns the value that was passed in, or, if that value was null, blank, zero or empty, returns the specified default value |
+| [Set-BreakOnError](#Set-BreakOnError) | Sets a breakpoint that causes the debugger to break on the first run-time error |
 
 <a name="Find-Application"></a>
 ## Find-Application
 ### Synopsis
-Shows in which folder (in particular native) commands reside
+Shows in which folder the given (native) command resides
 ### Syntax
 ```powershell
 Find-Application [-Command] <string> [<CommonParameters>]
@@ -33,56 +33,51 @@ Find-Application [-Command] <string> [<CommonParameters>]
 <a name="Find-InFiles"></a>
 ## Find-InFiles
 ### Synopsis
-Find-InFiles [-Pattern] <string> [-Path <Object>] [-Filter <string>] [-Recurse] [-Context <int[]>] [<CommonParameters>]
+Performs an (optionally recursive) file search based on a regular expression
 ### Syntax
 ```powershell
 Find-InFiles [-Pattern] <string> [-Path <Object>] [-Filter <string>] [-Recurse] [-Context <int[]>] [<CommonParameters>]
 ```
 ### Parameters
-#### Context &lt;int[]&gt;
+#### Pattern &lt;String&gt;
     
-    Required?                    false
-    Position?                    Named
+    Required?                    true
+    Position?                    2
+    Default value                
     Accept pipeline input?       false
-    Parameter set name           (All)
-    Aliases                      None
-    Dynamic?                     false
-#### Filter &lt;string&gt;
-    
-    Required?                    false
-    Position?                    Named
-    Accept pipeline input?       false
-    Parameter set name           (All)
-    Aliases                      None
-    Dynamic?                     false
+    Accept wildcard characters?  false
 #### Path &lt;Object&gt;
     
     Required?                    false
-    Position?                    Named
+    Position?                    named
+    Default value                $Pwd
     Accept pipeline input?       false
-    Parameter set name           (All)
-    Aliases                      None
-    Dynamic?                     false
-#### Pattern &lt;string&gt;
-    
-    Required?                    true
-    Position?                    1
-    Accept pipeline input?       false
-    Parameter set name           (All)
-    Aliases                      None
-    Dynamic?                     false
-#### Recurse
+    Accept wildcard characters?  false
+#### Filter &lt;String&gt;
     
     Required?                    false
-    Position?                    Named
+    Position?                    named
+    Default value                *.*
     Accept pipeline input?       false
-    Parameter set name           (All)
-    Aliases                      None
-    Dynamic?                     false
+    Accept wildcard characters?  false
+#### Recurse [&lt;SwitchParameter&gt;]
+    
+    Required?                    false
+    Position?                    named
+    Default value                False
+    Accept pipeline input?       false
+    Accept wildcard characters?  false
+#### Context &lt;Int32[]&gt;
+    
+    Required?                    false
+    Position?                    named
+    Default value                0
+    Accept pipeline input?       false
+    Accept wildcard characters?  false
 <a name="Format-HashTable"></a>
 ## Format-HashTable
 ### Synopsis
-Format-HashTable [-HashTable] <IDictionary[]> [[-Indentation] <int>] [<CommonParameters>]
+Pretty-prints a (nested) hash table
 ### Syntax
 ```powershell
 Format-HashTable [-HashTable] <IDictionary[]> [[-Indentation] <int>] [<CommonParameters>]
@@ -91,81 +86,75 @@ Format-HashTable [-HashTable] <IDictionary[]> [[-Indentation] <int>] [<CommonPar
 #### HashTable &lt;IDictionary[]&gt;
     
     Required?                    true
-    Position?                    0
-    Accept pipeline input?       true (ByValue)
-    Parameter set name           (All)
-    Aliases                      None
-    Dynamic?                     false
-#### Indentation &lt;int&gt;
-    
-    Required?                    false
     Position?                    1
-    Accept pipeline input?       false
-    Parameter set name           (All)
-    Aliases                      None
-    Dynamic?                     false
-<a name="Format-Object"></a>
-## Format-Object
-### Synopsis
-Format-Object [-Caption] <string> [-Value] <Object> [[-Indentation] <int>] [<CommonParameters>]
-### Syntax
-```powershell
-Format-Object [-Caption] <string> [-Value] <Object> [[-Indentation] <int>] [<CommonParameters>]
-```
-### Parameters
-#### Caption &lt;string&gt;
-    
-    Required?                    true
-    Position?                    0
-    Accept pipeline input?       false
-    Parameter set name           (All)
-    Aliases                      None
-    Dynamic?                     false
-#### Indentation &lt;int&gt;
+    Default value                
+    Accept pipeline input?       true (ByValue)
+    Accept wildcard characters?  false
+#### Indentation &lt;Int32&gt;
     
     Required?                    false
     Position?                    2
+    Default value                0
     Accept pipeline input?       false
-    Parameter set name           (All)
-    Aliases                      None
-    Dynamic?                     false
-#### Value &lt;Object&gt;
+    Accept wildcard characters?  false
+<a name="Format-Object"></a>
+## Format-Object
+### Synopsis
+Pretty-prints a (nested) object
+### Syntax
+```powershell
+Format-Object [-Caption] <string> [-Value] <Object> [[-Indentation] <int>] [<CommonParameters>]
+```
+### Parameters
+#### Caption &lt;String&gt;
     
     Required?                    true
     Position?                    1
+    Default value                
     Accept pipeline input?       false
-    Parameter set name           (All)
-    Aliases                      None
-    Dynamic?                     false
+    Accept wildcard characters?  false
+#### Value &lt;Object&gt;
+    
+    Required?                    true
+    Position?                    2
+    Default value                
+    Accept pipeline input?       false
+    Accept wildcard characters?  false
+#### Indentation &lt;Int32&gt;
+    
+    Required?                    false
+    Position?                    3
+    Default value                0
+    Accept pipeline input?       false
+    Accept wildcard characters?  false
 <a name="Get-ContiguousRange"></a>
 ## Get-ContiguousRange
 ### Synopsis
-Get-ContiguousRange [-Items] <int[]> [[-RequiredLength] <int>] [<CommonParameters>]
+Returns the first item of the first contiguous range of items of the specified length
 ### Syntax
 ```powershell
 Get-ContiguousRange [-Items] <int[]> [[-RequiredLength] <int>] [<CommonParameters>]
 ```
 ### Parameters
-#### Items &lt;int[]&gt;
+#### Items &lt;Int32[]&gt;
     
     Required?                    true
-    Position?                    0
+    Position?                    1
+    Default value                
     Accept pipeline input?       false
-    Parameter set name           (All)
-    Aliases                      None
-    Dynamic?                     false
-#### RequiredLength &lt;int&gt;
+    Accept wildcard characters?  false
+#### RequiredLength &lt;Int32&gt;
     
     Required?                    false
-    Position?                    1
+    Position?                    2
+    Default value                1
     Accept pipeline input?       false
-    Parameter set name           (All)
-    Aliases                      None
-    Dynamic?                     false
+    Accept wildcard characters?  false
 <a name="Get-ValueOrDefault"></a>
 ## Get-ValueOrDefault
 ### Synopsis
-
+Returns the value that was passed in, or, if that value was
+null, blank, zero or empty, returns the specified default value
 ### Syntax
 ```powershell
 Get-ValueOrDefault [[-DefaultValue] <Object>] [-Value <Object>] [<CommonParameters>]
@@ -237,10 +226,9 @@ Get-ValueOrDefault [[-DefaultValue] <Object>] [-Value <Object>] [<CommonParamete
 <a name="Set-BreakOnError"></a>
 ## Set-BreakOnError
 ### Synopsis
-Set-BreakOnError
+Sets a breakpoint that causes the debugger to break on the first run-time error
 ### Syntax
 ```powershell
 Set-BreakOnError
 ```
-### Parameters
-<div style='font-size:small; color: #ccc'>Generated 14-03-2018 14:47</div>
+<div style='font-size:small; color: #ccc'>Generated 14-03-2018 15:34</div>

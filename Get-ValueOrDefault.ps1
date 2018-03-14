@@ -1,4 +1,8 @@
 <#
+.SYNOPSIS
+Returns the value that was passed in, or, if that value was
+null, blank, zero or empty, returns the specified default value
+
 .EXAMPLE
 ('A' | ?? B) -eq "A" # returns True
 
