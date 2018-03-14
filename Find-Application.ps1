@@ -1,8 +1,10 @@
+# .Synopsis
+# Shows in which folder the given (native) command resides
 function Find-Application
 {
     param
     (
-        [string]$Command
+        [Parameter(Mandatory)][string]$Command
     )
 
     Get-Command -Name $command -ErrorAction SilentlyContinue | 
