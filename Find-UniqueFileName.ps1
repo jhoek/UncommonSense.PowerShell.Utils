@@ -3,7 +3,8 @@ function Find-UniqueFileName
     param
     (
         [Parameter(Mandatory)][string]$Path,
-        [ValidateRange(1, [int]::MaxValue)][int]$MaxAttempts = 5
+        [ValidateRange(1, [int]::MaxValue)][int]$MaxAttempts = 5,
+        [switch]$CreateFile
     )
 
     $Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
@@ -29,8 +30,19 @@ function Find-UniqueFileName
         {
             if (-not (Test-Path -Path $AttemptPath))
             {
-                New-Item -Path $AttemptPath -ItemType File
-                return
+                switch ($CreateFile)
+                {
+                    $true
+                    {
+                        New-Item -Path $AttemptPath -ItemType File
+                        return 
+                    }
+                    default 
+                    {
+                        Write-Output $AttemptPath 
+                        return
+                    }
+                }
             }
         }
         catch [System.IO.DirectoryNotFoundException]
@@ -43,7 +55,7 @@ function Find-UniqueFileName
         }
         catch [System.IO.IOException]
         {
-            # Swallow exception
+            # Swallow other kinds of IO exceptions
         }
     }
 
