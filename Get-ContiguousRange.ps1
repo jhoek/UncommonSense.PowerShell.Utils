@@ -19,7 +19,7 @@ function Get-ContiguousRange {
 
     process {
         foreach ($Item in $Items) {
-            $CachedItems.Add($Item)
+            $CachedItems.Add($Item) | Out-Null
         }
     }
 
