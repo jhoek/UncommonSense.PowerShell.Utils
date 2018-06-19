@@ -14,7 +14,7 @@ function Get-ContiguousRange {
     )
 
     begin {
-        $CachedItems = New-Object TypeName System.Collections.ArrayList
+        $CachedItems = New-Object -TypeName System.Collections.ArrayList
     }
 
     process {
