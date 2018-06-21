@@ -1,8 +1,10 @@
-. (Join-Path -Path $PSScriptRoot -ChildPath Find-Application.ps1)
-. (Join-Path -Path $PSScriptRoot -ChildPath Find-InFiles.ps1)
-. (Join-Path -Path $PSScriptRoot -ChildPath Format-Object.ps1)
-. (Join-Path -Path $PSScriptRoot -ChildPath Format-HashTable.ps1)
-. (Join-Path -Path $PSScriptRoot -ChildPath Get-ValueOrDefault.ps1)
-. (Join-Path -Path $PSScriptRoot -ChildPath Get-ContiguousRange.ps1)
-. (Join-Path -Path $PSScriptRoot -ChildPath Set-BreakOnError.ps1)
-. (Join-Path -Path $PSScriptRoot -ChildPath Find-UniqueFileName.ps1)
+$Public = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue )
+$Private = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue )
+Foreach ($import in @($Public + $Private)) {
+    Try {
+        . $import.fullname
+    }
+    Catch {
+        Write-Error -Message "Failed to import function $($import.fullname): $_"
+    }
+}

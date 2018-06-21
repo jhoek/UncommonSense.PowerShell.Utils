@@ -27,8 +27,7 @@ null, blank, zero or empty, returns the specified default value
 .EXAMPLE
 ($true | ?? G) -eq $true # returns True
 #>
-function Get-ValueOrDefault
-{
+function Get-ValueOrDefault {
     [Alias('OrOtherwise', '??')]
     param
     (
@@ -39,12 +38,10 @@ function Get-ValueOrDefault
         $DefaultValue
     )
 
-    if ($Value)
-    {
+    if ($Value) {
         $Value
     }
-    else
-    {
+    else {
         $DefaultValue
     }
 }
