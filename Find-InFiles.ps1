@@ -1,7 +1,7 @@
 # .Synopsis
 # Performs an (optionally recursive) file search based on a regular expression
-function Find-InFiles 
-{
+function Find-InFiles {
+    [alias('grep')]
     param
     (
         [Parameter(Mandatory, Position = 1)]

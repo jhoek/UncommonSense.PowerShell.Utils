@@ -1,7 +1,7 @@
 # .Synopsis
 # Shows in which folder the given (native) command resides
-function Find-Application
-{
+function Find-Application {
+    [Alias('which')]
     param
     (
         [Parameter(Mandatory)][string]$Command
