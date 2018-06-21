@@ -9,28 +9,28 @@
 @{
 
     # Script module or binary module file associated with this manifest.
-    RootModule        = '.\UncommonSense.PowerShell.Utils.psm1'
+    RootModule = '.\UncommonSense.PowerShell.Utils.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '1.0.2'
+    ModuleVersion = '1.0.3'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
 
     # ID used to uniquely identify this module
-    GUID              = '52a043dd-d142-4bb5-aa03-341e303c069f'
+    GUID = '52a043dd-d142-4bb5-aa03-341e303c069f'
 
     # Author of this module
-    Author            = 'Jan Hoek'
+    Author = 'Jan Hoek'
 
     # Company or vendor of this module
-    CompanyName       = 'uncommonsense.nl'
+    CompanyName = 'uncommonsense.nl'
 
     # Copyright statement for this module
-    Copyright         = '(c) 2018 Jan Hoek. All rights reserved.'
+    Copyright = '(c) 2018 Jan Hoek. All rights reserved.'
 
     # Description of the functionality provided by this module
-    Description       = 'PowerShell utility cmdlets'
+    Description = 'PowerShell utility cmdlets'
 
     # Minimum version of the PowerShell engine required by this module
     # PowerShellVersion = ''
@@ -70,17 +70,17 @@
 
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
     FunctionsToExport = 'Find-Application', 'Find-InFiles', 'Find-UniqueFileName', 
-    'Format-HashTable', 'Format-Object', 'Get-ContiguousRange', 
+    'Format-HashTable', 'Format-Object', 'Get-ContiguousRange', 'Get-PropertyValueOrDefault'
     'Get-ValueOrDefault', 'Set-BreakOnError'
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-    CmdletsToExport   = @()
+    CmdletsToExport = @()
 
     # Variables to export from this module
     # VariablesToExport = @()
 
     # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-    AliasesToExport   = '??', 'OrOtherwise', 'which', 'grep'
+    AliasesToExport = '??', 'OrOtherwise', 'which', 'grep'
 
     # DSC resources to export from this module
     # DscResourcesToExport = @()
@@ -92,12 +92,12 @@
     # FileList = @()
 
     # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
-    PrivateData       = @{
+    PrivateData = @{
 
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags       = @('PowerShell', 'utilities')
+            Tags = @('PowerShell', 'utilities')
 
             # A URL to the license for this module.
             LicenseUri = 'https://github.com/jhoek/UncommonSense.PowerShell.Utils/blob/master/LICENSE'
