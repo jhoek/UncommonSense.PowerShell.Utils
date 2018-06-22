@@ -3,6 +3,7 @@ function Get-PropertyValueOrDefault {
     param
     (
         [Parameter(Mandatory, ValueFromPipeline)]
+        [AllowNull()]
         [object[]]$Object,
 
         [Parameter(Mandatory, Position = 0)]
@@ -14,6 +15,9 @@ function Get-PropertyValueOrDefault {
 
     process {
         foreach ($Item in $Object) {
+            if ($Item -eq $null) {
+                $DefaultValue
+            }
             if ($Item | Get-Member -MemberType NoteProperty, Property -Name $PropertyName) {
                 $Item.$PropertyName
             }
