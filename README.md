@@ -12,6 +12,7 @@ PowerShell utility cmdlets
 | [Format-HashTable](#Format-HashTable) | Pretty-prints a (nested) hash table |
 | [Format-Object](#Format-Object) | Pretty-prints a (nested) object |
 | [Get-ContiguousRange](#Get-ContiguousRange) | Returns the first item or all items of the first contiguous range of items of the specified length |
+| [Get-DropboxPath](#Get-DropboxPath) | Get-DropboxPath |
 | [Get-PropertyValueOrDefault](#Get-PropertyValueOrDefault) | Get-PropertyValueOrDefault [-PropertyName] <string> [[-DefaultValue] <Object>] -Object <Object[]> [<CommonParameters>] |
 | [Get-ValueOrDefault](#Get-ValueOrDefault) | Returns the value that was passed in, or, if that value was null, blank, zero or empty, returns the specified default value |
 | [Set-BreakOnError](#Set-BreakOnError) | Sets a breakpoint that causes the debugger to break on the first run-time error |
@@ -203,6 +204,15 @@ Get-ContiguousRange [-Items] <int[]> [[-RequiredLength] <int>] [-ReturnAll] [<Co
 ```
 
 
+<a name="Get-DropboxPath"></a>
+## Get-DropboxPath
+### Synopsis
+Get-DropboxPath
+### Syntax
+```powershell
+Get-DropboxPath
+```
+### Parameters
 <a name="Get-PropertyValueOrDefault"></a>
 ## Get-PropertyValueOrDefault
 ### Synopsis
@@ -325,4 +335,4 @@ Sets a breakpoint that causes the debugger to break on the first run-time error
 ```powershell
 Set-BreakOnError
 ```
-<div style='font-size:small; color: #ccc'>Generated 03-07-2018 18:05</div>
+<div style='font-size:small; color: #ccc'>Generated 03-07-2018 18:09</div>
