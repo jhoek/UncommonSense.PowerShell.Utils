@@ -13,9 +13,11 @@ PowerShell utility cmdlets
 | [Format-Object](#Format-Object) | Pretty-prints a (nested) object |
 | [Get-ContiguousRange](#Get-ContiguousRange) | Returns the first item or all items of the first contiguous range of items of the specified length |
 | [Get-DropboxPath](#Get-DropboxPath) | Get-DropboxPath |
+| [Get-FormattedText](#Get-FormattedText) | Get-FormattedText [[-Text] <string>] [-BackgroundColor <string>] [-ForegroundColor <string>] [-BackgroundBright] [-ForegroundBright] [-Negative] [-Underline] [<CommonParameters>] |
 | [Get-PropertyValueOrDefault](#Get-PropertyValueOrDefault) | Get-PropertyValueOrDefault [-PropertyName] <string> [[-DefaultValue] <Object>] -Object <Object[]> [<CommonParameters>] |
 | [Get-ValueOrDefault](#Get-ValueOrDefault) | Returns the value that was passed in, or, if that value was null, blank, zero or empty, returns the specified default value |
 | [Set-BreakOnError](#Set-BreakOnError) | Sets a breakpoint that causes the debugger to break on the first run-time error |
+| [Split-Collection](#Split-Collection) | Splits a collection into chuncks of a given size |
 
 <a name="Find-Application"></a>
 ## Find-Application
@@ -213,6 +215,71 @@ Get-DropboxPath
 Get-DropboxPath
 ```
 ### Parameters
+<a name="Get-FormattedText"></a>
+## Get-FormattedText
+### Synopsis
+Get-FormattedText [[-Text] <string>] [-BackgroundColor <string>] [-ForegroundColor <string>] [-BackgroundBright] [-ForegroundBright] [-Negative] [-Underline] [<CommonParameters>]
+### Syntax
+```powershell
+Get-FormattedText [[-Text] <string>] [-BackgroundColor <string>] [-ForegroundColor <string>] [-BackgroundBright] [-ForegroundBright] [-Negative] [-Underline] [<CommonParameters>]
+```
+### Parameters
+#### BackgroundBright
+    
+    Required?                    false
+    Position?                    Named
+    Accept pipeline input?       false
+    Parameter set name           (All)
+    Aliases                      None
+    Dynamic?                     false
+#### BackgroundColor &lt;string&gt;
+    
+    Required?                    false
+    Position?                    Named
+    Accept pipeline input?       false
+    Parameter set name           (All)
+    Aliases                      None
+    Dynamic?                     false
+#### ForegroundBright
+    
+    Required?                    false
+    Position?                    Named
+    Accept pipeline input?       false
+    Parameter set name           (All)
+    Aliases                      None
+    Dynamic?                     false
+#### ForegroundColor &lt;string&gt;
+    
+    Required?                    false
+    Position?                    Named
+    Accept pipeline input?       false
+    Parameter set name           (All)
+    Aliases                      None
+    Dynamic?                     false
+#### Negative
+    
+    Required?                    false
+    Position?                    Named
+    Accept pipeline input?       false
+    Parameter set name           (All)
+    Aliases                      None
+    Dynamic?                     false
+#### Text &lt;string&gt;
+    
+    Required?                    false
+    Position?                    0
+    Accept pipeline input?       false
+    Parameter set name           (All)
+    Aliases                      None
+    Dynamic?                     false
+#### Underline
+    
+    Required?                    false
+    Position?                    Named
+    Accept pipeline input?       false
+    Parameter set name           (All)
+    Aliases                      None
+    Dynamic?                     false
 <a name="Get-PropertyValueOrDefault"></a>
 ## Get-PropertyValueOrDefault
 ### Synopsis
@@ -335,4 +402,49 @@ Sets a breakpoint that causes the debugger to break on the first run-time error
 ```powershell
 Set-BreakOnError
 ```
-<div style='font-size:small; color: #ccc'>Generated 03-07-2018 18:09</div>
+<a name="Split-Collection"></a>
+## Split-Collection
+### Synopsis
+Splits a collection into chuncks of a given size
+### Syntax
+```powershell
+Split-Collection [-Collection] <psobject[]> [-ChunkSize] <int> [<CommonParameters>]
+```
+### Parameters
+#### Collection &lt;PSObject[]&gt;
+    
+    Required?                    true
+    Position?                    1
+    Default value                
+    Accept pipeline input?       true (ByValue)
+    Accept wildcard characters?  false
+#### ChunkSize &lt;Int32&gt;
+    
+    Required?                    true
+    Position?                    2
+    Default value                0
+    Accept pipeline input?       false
+    Accept wildcard characters?  false
+### Examples
+#### Example 1 
+```powershell
+$Collection = (65..90) | ForEach-Object { [char]$_ }
+
+```
+
+$Collection | Split-Collection -ChunkSize 3 | Select-Object -Skip 3 -First 1
+#### Example 2 
+```powershell
+$Collection = (65..90) | ForEach-Object { [char]$_ }
+
+```
+
+Split-Collection -Collection $Collection -ChunkSize 5 | Select-Object -Skip 3 -First 1
+#### Example 3 
+```powershell
+$EmptyCollection = @()
+
+```
+
+$EmptyCollection | Split-Collection -ChunkSize 2 | Measure-Object
+<div style='font-size:small; color: #ccc'>Generated 04-09-2018 10:52</div>
