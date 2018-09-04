@@ -1,4 +1,7 @@
 <#
+.SYNOPSIS
+Splits a collection into chuncks of a given size
+
 .EXAMPLE
 $Collection = (65..90) | ForEach-Object { [char]$_ }
 $Collection | Split-Collection -ChunkSize 3 | Select-Object -Skip 3 -First 1 
@@ -30,7 +33,7 @@ function Split-Collection
 
     Process 
     {
-        foreach($Item in $Collection)
+        foreach ($Item in $Collection)
         {
             if ($null -eq $Chunk)
             {
@@ -41,7 +44,7 @@ function Split-Collection
 
             if ($Chunk.Count -eq $ChunkSize)
             {
-                (,$Chunk)
+                (, $Chunk)
                 $Chunk = $null
             }
         }
@@ -51,7 +54,7 @@ function Split-Collection
     {
         if ($null -ne $Chunk)
         {
-            (,$Chunk)
+            (, $Chunk)
         }
     }
 }
