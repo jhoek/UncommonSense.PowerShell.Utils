@@ -1,7 +1,9 @@
-function Get-FormattedText {
+function Get-FormattedText
+{
     param
     (
-        [Parameter(Position = 0)][string]$Text,        
+        [Parameter(Position = 1, ValueFromPipeline)]
+        [string[]]$Text,
 
         [ValidateSet('Black', 'Red', 'Green', 'Yellow', 'Blue', 'Magenta', 'Cyan', 'White')]
         [string]$BackgroundColor,
@@ -15,39 +17,45 @@ function Get-FormattedText {
         [switch]$Underline
     )
 
-    $Values = @()
+    Process
+    {
+        foreach($Item in $Text)
+        {
+            $Values = @()
 
-    if ($BackgroundColor) {
-        if ($BackgroundBright) {
-            $Values += 100 + (Get-ColorOffset -Color $BackgroundColor)
+            if ($BackgroundColor) {
+                if ($BackgroundBright) {
+                    $Values += 100 + (Get-ColorOffset -Color $BackgroundColor)
+                }
+                else {
+                    $Values += 40 + (Get-ColorOffset -Color $BackgroundColor)
+                }
+            }
+
+            if ($ForegroundColor) {
+                if ($ForegroundBright) {
+                    $Values = 90 + (Get-ColorOffset -Color $ForegroundColor)
+                }
+                else {
+                    $Values = 30 + (Get-ColorOffset -Color $ForegroundColor)
+                }
+            }
+
+            if ($Negative) {
+                $Values += 7
+            }
+
+            if ($UnderLine) {
+                $Values += 4
+            }
+
+            if ($Values) {
+                $Esc = [char]27
+                "$Esc[$($Values -join ';')m$Item$Esc[0m"
+            }
+            else {
+                $Item
+            }
         }
-        else {
-            $Values += 40 + (Get-ColorOffset -Color $BackgroundColor)
-        }
-    }
-
-    if ($ForegroundColor) {
-        if ($ForegroundBright) {
-            $Values = 90 + (Get-ColorOffset -Color $ForegroundColor)
-        }
-        else {
-            $Values = 30 + (Get-ColorOffset -Color $ForegroundColor)
-        }
-    }
-
-    if ($Negative) {
-        $Values += 7
-    }
-
-    if ($UnderLine) {
-        $Values += 4
-    }
-
-    if ($Values) {
-        $Esc = [char]27
-        "$Esc[$($Values -join ';')m$Text$Esc[0m"
-    }
-    else {
-        $Text
     }
 }
