@@ -1,4 +1,4 @@
-# UncommonSense.PowerShell.Utils
+﻿# UncommonSense.PowerShell.Utils
 
 PowerShell utility cmdlets
 
@@ -13,9 +13,9 @@ PowerShell utility cmdlets
 | [Format-Object](#Format-Object) | Pretty-prints a (nested) object |
 | [Get-ContiguousRange](#Get-ContiguousRange) | Returns the first item or all items of the first contiguous range of items of the specified length |
 | [Get-DropboxPath](#Get-DropboxPath) | Get-DropboxPath |
-| [Get-FormattedText](#Get-FormattedText) | Get-FormattedText [[-Text] <string>] [-BackgroundColor <string>] [-ForegroundColor <string>] [-BackgroundBright] [-ForegroundBright] [-Negative] [-Underline] [<CommonParameters>] |
+| [Get-FormattedText](#Get-FormattedText) | Get-FormattedText [[-Text] <string[]>] [-BackgroundColor <string>] [-ForegroundColor <string>] [-BackgroundBright] [-ForegroundBright] [-Negative] [-Underline] [<CommonParameters>] |
 | [Get-PropertyValueOrDefault](#Get-PropertyValueOrDefault) | Get-PropertyValueOrDefault [-PropertyName] <string> [[-DefaultValue] <Object>] -Object <Object[]> [<CommonParameters>] |
-| [Get-ValueOrDefault](#Get-ValueOrDefault) | Returns the value that was passed in, or, if that value was null, blank, zero or empty, returns the specified default value |
+| [Get-ValueOrDefault](#Get-ValueOrDefault) | Returns the value that was passed in, or, if that value was null, blank, zero or empty, returns the specified default value.  If value may refer to an undefined element in an array or hashtable, wrap $Value in a scriptblock to prevent premature evaluation. |
 | [Set-BreakOnError](#Set-BreakOnError) | Sets a breakpoint that causes the debugger to break on the first run-time error |
 | [Split-Collection](#Split-Collection) | Splits a collection into chuncks of a given size |
 
@@ -218,10 +218,10 @@ Get-DropboxPath
 <a name="Get-FormattedText"></a>
 ## Get-FormattedText
 ### Synopsis
-Get-FormattedText [[-Text] <string>] [-BackgroundColor <string>] [-ForegroundColor <string>] [-BackgroundBright] [-ForegroundBright] [-Negative] [-Underline] [<CommonParameters>]
+Get-FormattedText [[-Text] <string[]>] [-BackgroundColor <string>] [-ForegroundColor <string>] [-BackgroundBright] [-ForegroundBright] [-Negative] [-Underline] [<CommonParameters>]
 ### Syntax
 ```powershell
-Get-FormattedText [[-Text] <string>] [-BackgroundColor <string>] [-ForegroundColor <string>] [-BackgroundBright] [-ForegroundBright] [-Negative] [-Underline] [<CommonParameters>]
+Get-FormattedText [[-Text] <string[]>] [-BackgroundColor <string>] [-ForegroundColor <string>] [-BackgroundBright] [-ForegroundBright] [-Negative] [-Underline] [<CommonParameters>]
 ```
 ### Parameters
 #### BackgroundBright
@@ -264,11 +264,11 @@ Get-FormattedText [[-Text] <string>] [-BackgroundColor <string>] [-ForegroundCol
     Parameter set name           (All)
     Aliases                      None
     Dynamic?                     false
-#### Text &lt;string&gt;
+#### Text &lt;string[]&gt;
     
     Required?                    false
-    Position?                    0
-    Accept pipeline input?       false
+    Position?                    1
+    Accept pipeline input?       true (ByValue)
     Parameter set name           (All)
     Aliases                      None
     Dynamic?                     false
@@ -317,7 +317,10 @@ Get-PropertyValueOrDefault [-PropertyName] <string> [[-DefaultValue] <Object>] -
 ## Get-ValueOrDefault
 ### Synopsis
 Returns the value that was passed in, or, if that value was
-null, blank, zero or empty, returns the specified default value
+null, blank, zero or empty, returns the specified default value.
+
+If value may refer to an undefined element in an array or hashtable,
+wrap $Value in a scriptblock to prevent premature evaluation.
 ### Syntax
 ```powershell
 Get-ValueOrDefault [[-DefaultValue] <Object>] [-Value <Object>] [<CommonParameters>]
@@ -394,6 +397,20 @@ Get-ValueOrDefault [[-DefaultValue] <Object>] [-Value <Object>] [<CommonParamete
 ```
 
 
+#### Example 9 
+```powershell
+({ @()[3] } | ?? H) -eq 'H' # returns True
+
+```
+
+
+#### Example 10 
+```powershell
+({ @{}.Foo.Baz} | ?? I) -eq 'I' #returns True
+
+```
+
+
 <a name="Set-BreakOnError"></a>
 ## Set-BreakOnError
 ### Synopsis
@@ -447,4 +464,4 @@ $EmptyCollection = @()
 ```
 
 $EmptyCollection | Split-Collection -ChunkSize 2 | Measure-Object
-<div style='font-size:small; color: #ccc'>Generated 04-09-2018 10:52</div>
+<div style='font-size:small; color: #ccc'>Generated 06-11-2018 12:13</div>
