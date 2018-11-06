@@ -1,0 +1,64 @@
+﻿{
+    "linux":  {
+                  "options":  {
+                                  "shell":  {
+                                                "executable":  "/usr/bin/pwsh",
+                                                "args":  [
+                                                             "-NoProfile",
+                                                             "-Command"
+                                                         ]
+                                            }
+                              }
+              },
+    "tasks":  [
+                  {
+                      "label":  "UpdateReadMe",
+                      "problemMatcher":  [
+                                             "$msCompile"
+                                         ],
+                      "command":  "Invoke-Psake -taskList UpdateReadMe",
+                      "type":  "shell"
+                  },
+                  {
+                      "label":  "Default",
+                      "problemMatcher":  [
+                                             "$msCompile"
+                                         ],
+                      "command":  "Invoke-Psake -taskList Default",
+                      "type":  "shell"
+                  },
+                  {
+                      "label":  "UpdateManifest",
+                      "problemMatcher":  [
+                                             "$msCompile"
+                                         ],
+                      "command":  "Invoke-Psake -taskList UpdateManifest",
+                      "type":  "shell"
+                  }
+              ],
+    "version":  "2.0.0",
+    "osx":  {
+                "options":  {
+                                "shell":  {
+                                              "executable":  "/usr/local/bin/pwsh",
+                                              "args":  [
+                                                           "-NoProfile",
+                                                           "-Command"
+                                                       ]
+                                          }
+                            }
+            },
+    "windows":  {
+                    "options":  {
+                                    "shell":  {
+                                                  "executable":  "powershell.exe",
+                                                  "args":  [
+                                                               "-NoProfile",
+                                                               "-ExecutionPolicy",
+                                                               "Bypass",
+                                                               "-Command"
+                                                           ]
+                                              }
+                                }
+                }
+}
