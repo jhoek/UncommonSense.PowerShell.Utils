@@ -1,4 +1,4 @@
-﻿# UncommonSense.PowerShell.Utils
+# UncommonSense.PowerShell.Utils
 
 PowerShell utility cmdlets
 
@@ -464,4 +464,4 @@ $EmptyCollection = @()
 ```
 
 $EmptyCollection | Split-Collection -ChunkSize 2 | Measure-Object
-<div style='font-size:small; color: #ccc'>Generated 06-11-2018 12:13</div>
+<div style='font-size:small; color: #ccc'>Generated 30-11-2018 11:59</div>
