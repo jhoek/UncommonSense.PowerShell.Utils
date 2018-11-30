@@ -21,7 +21,9 @@ Task UpdateReadMe {
 }
 
 Task BumpVersionNo {
-    Update-ModuleManifest -Path $ManifestPath -ModuleVersion (Get-ModuleVersion -Path $ManifestPath | Step-ModuleVersion -By Build)
+    Update-ModuleManifest `
+        -Path $ManifestPath `
+        -ModuleVersion ((Get-ModuleVersion -Path $ManifestPath | Step-ModuleVersion -By Build).ToString(3))
 }
 
 Task Publish -Depends BumpVersionNo, UpdateExportedFunctions, UpdateReadMe {
