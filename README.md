@@ -11,6 +11,7 @@ PowerShell utility cmdlets
 | [Find-UniqueFileName](#Find-UniqueFileName) | Find-UniqueFileName [-Path] <string> [[-MaxAttempts] <int>] [-CreateFile] [<CommonParameters>] |
 | [Format-HashTable](#Format-HashTable) | Pretty-prints a (nested) hash table |
 | [Format-Object](#Format-Object) | Pretty-prints a (nested) object |
+| [Get-CommandInSameModule](#Get-CommandInSameModule) | Gets a list of commands that live in the same module as the given command. |
 | [Get-ContiguousRange](#Get-ContiguousRange) | Returns the first item or all items of the first contiguous range of items of the specified length |
 | [Get-DropboxPath](#Get-DropboxPath) | Get-DropboxPath |
 | [Get-FormattedText](#Get-FormattedText) | Get-FormattedText [[-Text] <string[]>] [-BackgroundColor <string>] [-ForegroundColor <string>] [-BackgroundBright] [-ForegroundBright] [-Negative] [-Underline] [<CommonParameters>] |
@@ -163,6 +164,23 @@ Format-Object [-Caption] <string> [-Value] <Object> [[-Indentation] <int>] [<Com
     Required?                    false
     Position?                    3
     Default value                0
+    Accept pipeline input?       false
+    Accept wildcard characters?  false
+<a name="Get-CommandInSameModule"></a>
+## Get-CommandInSameModule
+### Synopsis
+Gets a list of commands that live in the same module as the given command.
+### Syntax
+```powershell
+Get-CommandInSameModule [-Name] <string> [<CommonParameters>]
+```
+### Parameters
+#### Name &lt;String&gt;
+    The name of the command whose sibling commands should be displayed
+    
+    Required?                    true
+    Position?                    1
+    Default value                
     Accept pipeline input?       false
     Accept wildcard characters?  false
 <a name="Get-ContiguousRange"></a>
@@ -464,4 +482,4 @@ $EmptyCollection = @()
 ```
 
 $EmptyCollection | Split-Collection -ChunkSize 2 | Measure-Object
-<div style='font-size:small; color: #ccc'>Generated 30-11-2018 11:59</div>
+<div style='font-size:small; color: #ccc'>Generated 16-12-2018 09:04</div>
