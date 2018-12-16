@@ -11,6 +11,7 @@ Task UpdateExportedFunctions {
 }
 
 Task UpdateReadMe {
+    Import-Module /Users/jhoek/GitHub/UncommonSense.PowerShell.Documentation/UncommonSense.PowerShell.Documentation.psd1 -Force
     Import-Module (Join-Path $PSScriptRoot UncommonSense.PowerShell.Utils.psd1) -Force
 
     Convert-HelpToMarkdown `
