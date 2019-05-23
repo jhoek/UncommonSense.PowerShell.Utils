@@ -15,10 +15,12 @@ PowerShell utility cmdlets
 | [Get-ContiguousRange](#Get-ContiguousRange) | Returns the first item or all items of the first contiguous range of items of the specified length |
 | [Get-DropboxPath](#Get-DropboxPath) | Get-DropboxPath |
 | [Get-FormattedText](#Get-FormattedText) | Get-FormattedText [[-Text] <string[]>] [-BackgroundColor <string>] [-ForegroundColor <string>] [-BackgroundBright] [-ForegroundBright] [-Negative] [-Underline] [<CommonParameters>] |
+| [Get-FriendlyTypeName](#Get-FriendlyTypeName) | Get-FriendlyTypeName [-Type] <type[]> [-NullableFormat <string>] [-GenericFormat <string>] [-ArrayFormat <string>] [<CommonParameters>] |
 | [Get-PropertyValueOrDefault](#Get-PropertyValueOrDefault) | Get-PropertyValueOrDefault [-PropertyName] <string> [[-DefaultValue] <Object>] -Object <Object[]> [<CommonParameters>] |
 | [Get-ValueOrDefault](#Get-ValueOrDefault) | Returns the value that was passed in, or, if that value was null, blank, zero or empty, returns the specified default value.  If value may refer to an undefined element in an array or hashtable, wrap $Value in a scriptblock to prevent premature evaluation. |
 | [Set-BreakOnError](#Set-BreakOnError) | Sets a breakpoint that causes the debugger to break on the first run-time error |
 | [Split-Collection](#Split-Collection) | Splits a collection into chuncks of a given size |
+| [Test-NullableType](#Test-NullableType) | Test-NullableType [-Type] <type> [<CommonParameters>] |
 
 <a name="Find-Application"></a>
 ## Find-Application
@@ -298,6 +300,51 @@ Get-FormattedText [[-Text] <string[]>] [-BackgroundColor <string>] [-ForegroundC
     Parameter set name           (All)
     Aliases                      None
     Dynamic?                     false
+<a name="Get-FriendlyTypeName"></a>
+## Get-FriendlyTypeName
+### Synopsis
+Get-FriendlyTypeName [-Type] <type[]> [-NullableFormat <string>] [-GenericFormat <string>] [-ArrayFormat <string>] [<CommonParameters>]
+### Syntax
+```powershell
+Get-FriendlyTypeName [-Type] <type[]> [-NullableFormat <string>] [-GenericFormat <string>] [-ArrayFormat <string>] [<CommonParameters>]
+```
+### Output Type(s)
+
+- System.String
+
+### Parameters
+#### ArrayFormat &lt;string&gt;
+    
+    Required?                    false
+    Position?                    Named
+    Accept pipeline input?       false
+    Parameter set name           (All)
+    Aliases                      None
+    Dynamic?                     false
+#### GenericFormat &lt;string&gt;
+    
+    Required?                    false
+    Position?                    Named
+    Accept pipeline input?       false
+    Parameter set name           (All)
+    Aliases                      None
+    Dynamic?                     false
+#### NullableFormat &lt;string&gt;
+    
+    Required?                    false
+    Position?                    Named
+    Accept pipeline input?       false
+    Parameter set name           (All)
+    Aliases                      None
+    Dynamic?                     false
+#### Type &lt;type[]&gt;
+    
+    Required?                    true
+    Position?                    0
+    Accept pipeline input?       true (ByValue)
+    Parameter set name           (All)
+    Aliases                      None
+    Dynamic?                     false
 <a name="Get-PropertyValueOrDefault"></a>
 ## Get-PropertyValueOrDefault
 ### Synopsis
@@ -482,4 +529,25 @@ $EmptyCollection = @()
 ```
 
 $EmptyCollection | Split-Collection -ChunkSize 2 | Measure-Object
-<div style='font-size:small; color: #ccc'>Generated 16-12-2018 09:04</div>
+<a name="Test-NullableType"></a>
+## Test-NullableType
+### Synopsis
+Test-NullableType [-Type] <type> [<CommonParameters>]
+### Syntax
+```powershell
+Test-NullableType [-Type] <type> [<CommonParameters>]
+```
+### Output Type(s)
+
+- System.Boolean
+
+### Parameters
+#### Type &lt;type&gt;
+    
+    Required?                    true
+    Position?                    0
+    Accept pipeline input?       false
+    Parameter set name           (All)
+    Aliases                      None
+    Dynamic?                     false
+<div style='font-size:small; color: #ccc'>Generated 07-03-2019 22:19</div>
