@@ -15,9 +15,9 @@ function Sort-Content
 
         $Path.ForEach{
             $PSCmdlet.GetResolvedProviderPathFromPSPath($Path, [ref]$Provider).ForEach{
-                Get-Content -Path $_.FullName -Encoding $Encoding `
+                Get-Content -Path $_ -Encoding $Encoding `
                     | Sort-Object `
-                    | Set-Content -Path $_.FullName -Encoding $Encoding
+                    | Set-Content -Path $_ -Encoding $Encoding
             }
         }
     }
