@@ -6,7 +6,9 @@ function Sort-Content
         [string[]]$Path,
 
         [ValidateSet('ASCII', 'BigEndianUnicode', 'OEM', 'Unicode', 'UTF7', 'UTF8', 'UTF8BOM', 'UTF8NoBOM', 'UTF32')]
-        [string]$Encoding = 'UTF8NoBOM'
+        [string]$Encoding = 'UTF8NoBOM',
+
+        [switch]$Unique
     )
 
     process
@@ -16,9 +18,9 @@ function Sort-Content
         $Path.ForEach{
             $PSCmdlet.GetResolvedProviderPathFromPSPath($Path, [ref]$Provider).ForEach{
                 Get-Content -Path $_ -Encoding $Encoding `
-                    | Sort-Object `
-                    | Set-Content -Path $_ -Encoding $Encoding
-            }
+                | Sort-Object -Unique:$Unique `
+                | Set-Content -Path $_ -Encoding $Encoding
         }
     }
+}
 }
