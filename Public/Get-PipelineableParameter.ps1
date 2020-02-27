@@ -1,3 +1,5 @@
+# .EXAMPLE
+# Get-PipelineableParameter -Name Select-String
 function Get-PipelineableParameter
 {
     param
@@ -38,5 +40,3 @@ function Get-PipelineableParameter
 }
 }
 }
-
-Get-Command Show-AlpsObject | Get-PipelineableParameter
