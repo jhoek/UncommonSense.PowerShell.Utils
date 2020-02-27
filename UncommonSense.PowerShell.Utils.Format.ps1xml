@@ -1,0 +1,37 @@
+<Configuration>
+	<ViewDefinitions>
+		<View>
+			<Name>Default</Name>
+			<ViewSelectedBy>
+				<TypeName>UncommonSense.PowerShell.Utils.PipelineableParameter</TypeName>
+			</ViewSelectedBy>
+			<TableControl>
+				<TableHeaders></TableHeaders>
+				<TableRowEntries>
+					<TableRowEntry>
+						<TableColumnItems>
+							<TableColumnItem>
+								<PropertyName>CommandName</PropertyName>
+							</TableColumnItem>
+							<TableColumnItem>
+								<PropertyName>ParameterSetName</PropertyName>
+							</TableColumnItem>
+							<TableColumnItem>
+								<PropertyName>ParameterName</PropertyName>
+							</TableColumnItem>
+							<TableColumnItem>
+								<PropertyName>ParameterType</PropertyName>
+							</TableColumnItem>
+							<TableColumnItem>
+								<PropertyName>ValueFromPipeline</PropertyName>
+							</TableColumnItem>
+							<TableColumnItem>
+								<PropertyName>ValueFromPipelineByPropertyName</PropertyName>
+							</TableColumnItem>
+						</TableColumnItems>
+					</TableRowEntry>
+				</TableRowEntries>
+			</TableControl>
+		</View>
+	</ViewDefinitions>
+</Configuration>
