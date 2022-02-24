@@ -72,7 +72,7 @@
     FunctionsToExport = 'Find-Application', 'Find-InFiles', 'Find-UniqueFileName',
     'Format-HashTable', 'Format-Object', 'Get-CommandInSameModule',
     'Get-ContiguousRange', 'Get-DropboxPath', 'Get-FormattedText',
-    'Get-FriendlyTypeName', 'Get-PropertyValueOrDefault',
+    'Get-FriendlyTypeName', 'Get-PropertyValueOrDefault', 'Get-TextSimilarity',
     'Get-ValueOrDefault', 'Set-BreakOnError', 'Split-Collection',
     'Test-NullableType', 'Sort-Content', 'Get-PipelineableParameter', 'Reset-Module'
 
