@@ -12,7 +12,7 @@
     RootModule        = '.\UncommonSense.PowerShell.Utils.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '1.0.8'
+    ModuleVersion     = '1.0.9'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -74,7 +74,8 @@
     'Get-ContiguousRange', 'Get-DropboxPath', 'Get-FormattedText',
     'Get-FriendlyTypeName', 'Get-PropertyValueOrDefault', 'Get-TextSimilarity',
     'Get-ValueOrDefault', 'Set-BreakOnError', 'Split-Collection',
-    'Test-NullableType', 'Sort-Content', 'Get-PipelineableParameter', 'Reset-Module'
+    'Test-NullableType', 'Sort-Content', 'Get-PipelineableParameter', 'Reset-Module',
+    'Update-Content'
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     CmdletsToExport   = @()
