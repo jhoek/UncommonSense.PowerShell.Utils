@@ -12,7 +12,7 @@ function Update-Content
         [scriptblock]$Begin = {},
 
         [ValidateNotNull()]
-        [scriptblock]$ProcessRecord = { param($Line) $Line },
+        [scriptblock]$Process = { param($Line) $Line },
 
         [ValidateNotNull()]
         [scriptblock]$End = {}
@@ -28,7 +28,8 @@ function Update-Content
                 & $Begin
 
                 Get-Content -Path $_ -Encoding $Encoding `
-                | ForEach-Object { & ProcessRecord -Line $_ } `
+                | ForEach-Object { & $Process -Line $_ } `
+                | Where-Object { $_ -ne $null }
                 | Set-Content -Path $_ -Encoding $Encoding
 
                 & $End
