@@ -1,7 +1,6 @@
-function Sort-Content
+function Update-Content
 {
-    param
-    (
+    param(
         [Parameter(Mandatory, ValueFromPipeline, ValueFromPipelineByPropertyName, Position = 0)]
         [Alias('FullName')]
         [string[]]$Path,
@@ -9,7 +8,14 @@ function Sort-Content
         [ValidateSet('ASCII', 'BigEndianUnicode', 'OEM', 'Unicode', 'UTF7', 'UTF8', 'UTF8BOM', 'UTF8NoBOM', 'UTF32')]
         [string]$Encoding = 'UTF8NoBOM',
 
-        [switch]$Unique
+        [ValidateNotNull()]
+        [scriptblock]$Begin = {},
+
+        [ValidateNotNull()]
+        [scriptblock]$ProcessRecord = { param($Line) $Line },
+
+        [ValidateNotNull()]
+        [scriptblock]$End = {}
     )
 
     process
@@ -17,10 +23,15 @@ function Sort-Content
         $Provider = $null
 
         $Path.ForEach{
-            $PSCmdlet.GetResolvedProviderPathFromPSPath($Path, [ref]$Provider).ForEach{
+            $PSCmdlet.GetResolvedProviderPathFromPSPath($Path, [ref]$Provider)
+            | ForEach-Object {
+                & $Begin
+
                 Get-Content -Path $_ -Encoding $Encoding `
-                | Sort-Object -Unique:$Unique `
+                | ForEach-Object { & ProcessRecord -Line $_ } `
                 | Set-Content -Path $_ -Encoding $Encoding
+
+                & $End
             }
         }
     }
