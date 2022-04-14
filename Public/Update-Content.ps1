@@ -27,7 +27,9 @@ function Update-Content
             | ForEach-Object {
                 & $Begin
 
-                Get-Content -Path $_ -Encoding $Encoding `
+                $Content = Get-Content -Path $_ -Encoding $Encoding
+
+                $Content
                 | ForEach-Object { & $Process -Line $_ } `
                 | Where-Object { $_ -ne $null }
                 | Set-Content -Path $_ -Encoding $Encoding
