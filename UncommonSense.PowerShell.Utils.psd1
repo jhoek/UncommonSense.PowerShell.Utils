@@ -73,7 +73,7 @@
     'Format-HashTable', 'Format-Object', 'Get-CommandInSameModule',
     'Get-ContiguousRange', 'Get-DropboxPath', 'Get-FormattedText',
     'Get-FriendlyTypeName', 'Get-PropertyValueOrDefault', 'Get-TextSimilarity',
-    'Get-ValueOrDefault', 'Set-BreakOnError', 'Split-Collection',
+    'Get-ValueOrDefault', 'Set-BreakOnError', 'Split-Collection', 'Split-String',
     'Test-NullableType', 'Sort-Content', 'Get-PipelineableParameter', 'Reset-Module',
     'Update-Content'
 
