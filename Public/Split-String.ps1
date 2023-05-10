@@ -47,30 +47,21 @@ function Split-String
     process
     {
         $InputObject.ForEach{
-            switch ($PSCmdlet.ParameterSetName)
+            switch ($true)
             {
-                'ScriptBlock'
+                ($PSCmdlet.ParameterSetName -eq 'ScriptBlock')
                 {
-
+                    $_ -split $ScriptBlock, $MaxCount
                 }
 
-                default
+                ($PSCmdlet.ParameterSetName -eq 'SimpleMatch')
                 {
-                    if ($SimpleMatch) { $Separator = [Regex]::Escape($Separator) }
+                    switch ($IgnoreCase)
+                    {
+                        ($false) { $_ -split $Separator, $MaxCount }
+                        ($true) { $_ -split $Separator, $MaxCount, IgnoreCase }
+                    }
 
-                    $Options = @(
-                        if ($SingleLine) { 'SingleLine' }
-                        if ($MultiLine) { 'MultiLine' }
-                        if (-not $UseCulture) { 'CultureInvariant' }
-                        if ($IgnoreCase) { 'IgnoreCase' }
-                        if ($IgnorePatternWhitespace) { 'IgnorePatternWhitespace' }
-                    )
-
-                    $OptionText = if ($Options) { $Options -join ',' } else { 'None' }
-
-                    [Regex]::Split($_, $Separator, $OptionText)
-
-                    # FIXME: $MaxCount
                 }
             }
         }
