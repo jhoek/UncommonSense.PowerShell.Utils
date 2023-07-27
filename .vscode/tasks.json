@@ -1,84 +1,99 @@
 {
-  "tasks": [
-    {
-      "label": "UpdateExportedFunctions",
-      "type": "shell",
-      "problemMatcher": [
-        "$msCompile"
-      ],
-      "command": "Invoke-Psake -taskList UpdateExportedFunctions"
+    "tasks": [
+        {
+            "label": "test",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-Command",
+                "Invoke-Pester",
+                "-Output",
+                "Detailed"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "UpdateExportedFunctions",
+            "type": "shell",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "command": "Invoke-Psake -taskList UpdateExportedFunctions"
+        },
+        {
+            "label": "Publish",
+            "type": "shell",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "command": "Invoke-Psake -taskList Publish"
+        },
+        {
+            "label": "BumpVersionNo",
+            "type": "shell",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "command": "Invoke-Psake -taskList BumpVersionNo"
+        },
+        {
+            "label": "Default",
+            "type": "shell",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "command": "Invoke-Psake -taskList Default",
+            "group": {
+                "isDefault": true,
+                "kind": "build"
+            }
+        },
+        {
+            "label": "UpdateReadMe",
+            "type": "shell",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "command": "Invoke-Psake -taskList UpdateReadMe"
+        }
+    ],
+    "linux": {
+        "options": {
+            "shell": {
+                "executable": "/usr/bin/pwsh",
+                "args": [
+                    "-NoProfile",
+                    "-Command"
+                ]
+            }
+        }
     },
-    {
-      "label": "Publish",
-      "type": "shell",
-      "problemMatcher": [
-        "$msCompile"
-      ],
-      "command": "Invoke-Psake -taskList Publish"
+    "version": "2.0.0",
+    "windows": {
+        "options": {
+            "shell": {
+                "executable": "powershell.exe",
+                "args": [
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-Command"
+                ]
+            }
+        }
     },
-    {
-      "label": "BumpVersionNo",
-      "type": "shell",
-      "problemMatcher": [
-        "$msCompile"
-      ],
-      "command": "Invoke-Psake -taskList BumpVersionNo"
-    },
-    {
-      "label": "Default",
-      "type": "shell",
-      "problemMatcher": [
-        "$msCompile"
-      ],
-      "command": "Invoke-Psake -taskList Default",
-      "group": {
-        "isDefault": true,
-        "kind": "build"
-      }
-    },
-    {
-      "label": "UpdateReadMe",
-      "type": "shell",
-      "problemMatcher": [
-        "$msCompile"
-      ],
-      "command": "Invoke-Psake -taskList UpdateReadMe"
+    "osx": {
+        "options": {
+            "shell": {
+                "executable": "/usr/local/bin/pwsh",
+                "args": [
+                    "-NoProfile",
+                    "-Command"
+                ]
+            }
+        }
     }
-  ],
-  "linux": {
-    "options": {
-      "shell": {
-        "executable": "/usr/bin/pwsh",
-        "args": [
-          "-NoProfile",
-          "-Command"
-        ]
-      }
-    }
-  },
-  "version": "2.0.0",
-  "windows": {
-    "options": {
-      "shell": {
-        "executable": "powershell.exe",
-        "args": [
-          "-NoProfile",
-          "-ExecutionPolicy",
-          "Bypass",
-          "-Command"
-        ]
-      }
-    }
-  },
-  "osx": {
-    "options": {
-      "shell": {
-        "executable": "/usr/local/bin/pwsh",
-        "args": [
-          "-NoProfile",
-          "-Command"
-        ]
-      }
-    }
-  }
 }
