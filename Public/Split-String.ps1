@@ -10,6 +10,7 @@ function Split-String
         [Parameter(Mandatory, ParameterSetName = 'RegexMatch', Position = 1)]
         [Parameter(Mandatory, ParameterSetName = 'RegexMatchSingleLine', Position = 1)]
         [Parameter(Mandatory, ParameterSetName = 'RegexMatchMultiLine', Position = 1)]
+        [Alias('Delimiter')] # Join-String calls this parameter 'Separator'
         [string]$Separator,
 
         [Parameter(ParameterSetName = 'SimpleMatch')]
@@ -41,7 +42,7 @@ function Split-String
         [scriptblock]$ScriptBlock,
 
         [ValidateRange(1, [int]::MaxValue)]
-        [int]$MaxCount = [int]::MaxValue
+        [int]$MaxCount = 0
     )
 
     process
@@ -49,17 +50,22 @@ function Split-String
         $InputObject.ForEach{
             switch ($true)
             {
-                ($PSCmdlet.ParameterSetName -eq 'ScriptBlock')
+                ($PSCmdlet.ParameterSetName -eq 'ScriptBlock' -and $MaxCount -ne 0)
                 {
-                    $_ -split $ScriptBlock, $MaxCount
+                    return ($_ -split $ScriptBlock, $MaxCount)
                 }
 
-                ($PSCmdlet.ParameterSetName -eq 'SimpleMatch')
+                ($PSCmdlet.ParameterSetName -eq 'ScriptBlock')
+                {
+                    return ($_ -split $ScriptBlock)
+                }
+
+                ($PSCmdlet.ParameterSetName -eq 'SimpleMatch' -and $MaxCount -ne 0)
                 {
                     switch ($IgnoreCase)
                     {
                         ($false) { $_ -split $Separator, $MaxCount }
-                        ($true) { $_ -split $Separator, $MaxCount, IgnoreCase }
+                        ($true) { $_ -split $Separator, $MaxCount, $IgnoreCase }
                     }
 
                 }
