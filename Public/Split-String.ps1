@@ -84,9 +84,11 @@ function Split-String
                     return ($CurrentInputObject -split $Separator, $MaxCount, $Options)
                 }
 
+
+
                 default
                 {
-                    return ($CurrentInputObject -split $Separator, $Options)
+                    return ($CurrentInputObject -split $Separator)
                 }
             }
         }
