@@ -4,10 +4,10 @@ function Split-String
     # - ScriptBlock ($MaxCount is optional)
     # - SimpleMatch ($MaxCount is optional)
     # - RegexMatch
-    #   - RegexWithMaxCount ($MaxCount is mandatory)
-    #     - RegexWithMaxCountSingleLine ($MaxCount and $SingleLine mandatory; $MultiLine does not exist)
-    #     - RegexWithMaxCountMultiLine ($MaxCount and $MultiLine mandatory; $SingleLine does not exist)
-    #   - RegexWithoutMaxCount ($MaxCount does not exist; none of the options exist)
+    #   - RegexMatchWithMaxCount ($MaxCount is mandatory)
+    #     - RegexMatchWithMaxCountSingleLine ($MaxCount and $SingleLine mandatory; $MultiLine does not exist)
+    #     - RegexMatchWithMaxCountMultiLine ($MaxCount and $MultiLine mandatory; $SingleLine does not exist)
+    #   - RegexMatchWithoutMaxCount ($MaxCount does not exist; none of the options exist)
 
     [CmdletBinding(DefaultParameterSetName = 'RegexMatch')]
     param
