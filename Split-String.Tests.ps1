@@ -33,16 +33,27 @@ Describe 'Split-String' {
 
     Context 'Delimiter' {
         It 'SimpleMatch' {
-            'ABCDEF' | Split-String -Separator 'D' -SimpleMatch | Should -Be 'ABC', 'EF'
+            'ABCDEF' | Split-String -Separator 'D' -SimpleMatch -MaxCount ([int]::MaxValue) | Should -Be 'ABC', 'EF'
         }
 
         It 'SimpleMatch with MaxCount' {
             'ABCDECFGHCPQR' | Split-String -Separator 'C' -MaxCount 3 -SimpleMatch | Should -Be 'AB', 'DE', 'FGHCPQR'
-         }
+        }
 
-        It 'SimpleMatch with MaxCount and IgnoreCase' {}
-        It 'RegexMatch' {}
-        It 'RegexMatch with MaxCount' {}
-        It 'RegexMatch with MaxCount and IgnoreCase' {}
+        It 'SimpleMatch with MaxCount and IgnoreCase' {
+            'ABCDECFGHCPQR' | Split-String -Separator 'c' -MaxCount 3 -SimpleMatch -IgnoreCase | Should -Be 'AB', 'DE', 'FGHCPQR'
+        }
+
+        It 'RegexMatch' {
+            'ABCDEFGHIJ' | Split-String -Separator '[EF]' | Should -Be 'ABCD', '', 'GHIJ'
+        }
+
+        It 'RegexMatch with MaxCount' {
+
+        }
+
+        It 'RegexMatch with MaxCount and IgnoreCase' {
+
+        }
     }
 }
