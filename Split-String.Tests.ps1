@@ -30,4 +30,11 @@ Describe 'Split-String' {
             'ABCDECGCIJCLMNOP' | Split-String -ScriptBlock { $_ -eq 'C' } -MaxCount 3 | Should -Be 'AB', 'DE', 'GCIJCLMNOP'
         }
     }
+
+    Context 'Delimiter' {
+        It 'SimpleMatch' {}
+        It 'SimpleMatch with MaxCount' {}
+        It 'RegexMatch' {}
+
+    }
 }
