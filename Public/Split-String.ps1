@@ -30,7 +30,7 @@ function Split-String
         [Parameter(ParameterSetName = 'RegexMatch')]
         [Parameter(ParameterSetName = 'RegexMatchSingleLine')]
         [Parameter(ParameterSetName = 'RegexMatchMultiLine')]
-        [switch]$UseCulture,
+        [switch]$CultureInvariant,
 
         [Parameter(Mandatory, ParameterSetName = 'RegexMatchSingleLine')]
         [switch]$SingleLine,
@@ -45,29 +45,48 @@ function Split-String
         [int]$MaxCount = 0
     )
 
+    begin
+    {
+        $Options =
+        @(
+            if ($SimpleMatch) { 'SimpleMatch' }
+            if ($RegexMatch) { 'RegexMatch' }
+            if ($IgnoreCase) { 'IgnoreCase' }
+            if ($CultureInvariant) { 'CultureInvariant' }
+            if ($IgnorePatternWhitespace) { 'IgnorePatternWhitespace' }
+            if ($ExplicitCapture) { 'ExplicitCapture' }
+            if ($SingleLine) { 'SingleLine' }
+            if ($MultiLine) { 'MultiLine' }
+        ) -join ','
+
+        Write-Verbose "Options are '$Options'"
+    }
+
     process
     {
         $InputObject.ForEach{
+            $CurrentInputObject = $_
+
             switch ($true)
             {
                 ($PSCmdlet.ParameterSetName -eq 'ScriptBlock' -and $MaxCount -ne 0)
                 {
-                    return ($_ -split $ScriptBlock, $MaxCount)
+                    return ($CurrentInputObject -split $ScriptBlock, $MaxCount)
                 }
 
                 ($PSCmdlet.ParameterSetName -eq 'ScriptBlock')
                 {
-                    return ($_ -split $ScriptBlock)
+                    return ($CurrentInputObject -split $ScriptBlock)
                 }
 
-                ($PSCmdlet.ParameterSetName -eq 'SimpleMatch' -and $MaxCount -ne 0)
+                ($MaxCount -ne 0)
                 {
-                    switch ($IgnoreCase)
-                    {
-                        ($false) { $_ -split $Separator, $MaxCount, 'SimpleMatch' }
-                        ($true) { $_ -split $Separator, $MaxCount, 'SimpleMatch, IgnoreCase' }
-                    }
+                    return ($CurrentInputObject -split $Separator, $MaxCount, $Options)
+                }
 
+                default
+                {
+                    return ($CurrentInputObject -split $Separator, $Options)
                 }
             }
         }

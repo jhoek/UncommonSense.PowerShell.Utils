@@ -8,7 +8,7 @@ Describe 'Split-String' {
             Split-String -InputObject 'ABCDEFG' -Separator 'C' | Should -Be 'AB', 'DEFG'
         }
 
-        It 'Multiple strings a parameter' {
+        It 'Multiple strings as parameters' {
             Split-String -InputObject 'ABCDEFG', 'PQRSTCV' -Separator 'C' | Should -Be 'AB', 'DEFG', 'PQRST', 'V'
         }
 
@@ -16,7 +16,7 @@ Describe 'Split-String' {
             'ABCDEFG' | Split-String -Separator 'C' | Should -Be 'AB', 'DEFG'
         }
 
-        It 'Multiple string via pipeline' {
+        It 'Multiple strings via pipeline' {
             'ABCDEFG', 'PQRSTCV' | Split-String -Separator 'C' | Should -Be 'AB', 'DEFG', 'PQRST', 'V'
         }
     }
@@ -27,7 +27,7 @@ Describe 'Split-String' {
         }
 
         It 'ScriptBlock with MaxCount' {
-
+            'ABCDECGCIJCLMNOP' | Split-String -ScriptBlock { $_ -eq 'C' } -MaxCount 3 | Should -Be 'AB', 'DE', 'GCIJCLMNOP'
         }
     }
 }
