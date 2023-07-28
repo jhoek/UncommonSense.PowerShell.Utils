@@ -7,7 +7,6 @@ function Split-String
     #   - RegexMatchWithMaxCount ($MaxCount is mandatory)
     #     - RegexMatchWithMaxCountSingleLine ($MaxCount and $SingleLine mandatory; $MultiLine does not exist)
     #     - RegexMatchWithMaxCountMultiLine ($MaxCount and $MultiLine mandatory; $SingleLine does not exist)
-    #   - RegexMatchWithoutMaxCount ($MaxCount does not exist; none of the options exist)
 
     [CmdletBinding(DefaultParameterSetName = 'RegexMatch')]
     param
@@ -17,8 +16,9 @@ function Split-String
 
         [Parameter(Mandatory, ParameterSetName = 'SimpleMatch', Position = 1)]
         [Parameter(Mandatory, ParameterSetName = 'RegexMatch', Position = 1)]
-        [Parameter(Mandatory, ParameterSetName = 'RegexMatchSingleLine', Position = 1)]
-        [Parameter(Mandatory, ParameterSetName = 'RegexMatchMultiLine', Position = 1)]
+        [Parameter(Mandatory, ParameterSetName = 'RegexMatchWithMaxCount', Position = 1)]
+        [Parameter(Mandatory, ParameterSetName = 'RegexMatchWithMaxCountSingleLine', Position = 1)]
+        [Parameter(Mandatory, ParameterSetName = 'RegexMatchWithMaxCountMultiLine', Position = 1)]
         [Alias('Delimiter')] # Join-String calls this parameter 'Separator'
         [string]$Separator,
 
