@@ -2,8 +2,8 @@ function Split-String
 {
     # Parametersets:
     # - ScriptBlock ($MaxCount is optional)
-    # - SimpleMatch ($MaxCount is optional)
-    # - RegexMatch
+    # - SimpleMatch ($MaxCount is mandatory, as it is an option)
+    # - RegexMatch ($MaxCount does not exist)
     #   - RegexMatchWithMaxCount ($MaxCount is mandatory)
     #     - RegexMatchWithMaxCountSingleLine ($MaxCount and $SingleLine mandatory; $MultiLine does not exist)
     #     - RegexMatchWithMaxCountMultiLine ($MaxCount and $MultiLine mandatory; $SingleLine does not exist)
@@ -23,33 +23,38 @@ function Split-String
         [string]$Separator,
 
         [Parameter(ParameterSetName = 'SimpleMatch')]
-        [Parameter(ParameterSetName = 'RegexMatch')]
-        [Parameter(ParameterSetName = 'RegexMatchSingleLine')]
-        [Parameter(ParameterSetName = 'RegexMatchMultiLine')]
+        [Parameter(ParameterSetName = 'RegexMatchWithMaxCount')]
+        [Parameter(ParameterSetName = 'RegexMatchWithMaxCountSingleLine')]
+        [Parameter(ParameterSetName = 'RegexMatchWithMaxCountMultiLine')]
         [switch]$IgnoreCase,
 
         [Parameter(Mandatory, ParameterSetName = 'SimpleMatch')]
         [switch]$SimpleMatch,
 
         [Parameter(ParameterSetName = 'RegexMatch')]
-        [Parameter(ParameterSetName = 'RegexMatchSingleLine')]
-        [Parameter(ParameterSetName = 'RegexMatchMultiLine')]
+        [Parameter(ParameterSetName = 'RegexMatchWithMaxCountSingleLine')]
+        [Parameter(ParameterSetName = 'RegexMatchWithMaxCountMultiLine')]
         [switch]$IgnorePatternWhitespace,
 
         [Parameter(ParameterSetName = 'RegexMatch')]
-        [Parameter(ParameterSetName = 'RegexMatchSingleLine')]
-        [Parameter(ParameterSetName = 'RegexMatchMultiLine')]
+        [Parameter(ParameterSetName = 'RegexMatchWithMaxCountSingleLine')]
+        [Parameter(ParameterSetName = 'RegexMatchWithMaxCountMultiLine')]
         [switch]$CultureInvariant,
 
-        [Parameter(Mandatory, ParameterSetName = 'RegexMatchSingleLine')]
+        [Parameter(Mandatory, ParameterSetName = 'RegexMatchWithMaxCountSingleLine')]
         [switch]$SingleLine,
 
-        [Parameter(Mandatory, ParameterSetName = 'RegexMatchMultiLine')]
+        [Parameter(Mandatory, ParameterSetName = 'RegexMatchWithMaxCountMultiLine')]
         [switch]$MultiLine,
 
         [Parameter(Mandatory, ParameterSetName = 'ScriptBlock')]
         [scriptblock]$ScriptBlock,
 
+        [Parameter(ParameterSetName = 'ScriptBlock')]
+        [Parameter(Mandatory, ParameterSetName = 'SimpleMatch')]
+        [Parameter(Mandatory, ParameterSetName = 'RegexMatchWithMaxCount')]
+        [Parameter(Mandatory, ParameterSetName = 'RegexMatchWithMaxCountSingleLine')]
+        [Parameter(Mandatory, ParameterSetName = 'RegexMatchWithMaxCountMultiLine')]
         [ValidateRange(1, [int]::MaxValue)]
         [int]$MaxCount = 0
     )
