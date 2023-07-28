@@ -64,8 +64,8 @@ function Split-String
                 {
                     switch ($IgnoreCase)
                     {
-                        ($false) { $_ -split $Separator, $MaxCount }
-                        ($true) { $_ -split $Separator, $MaxCount, $IgnoreCase }
+                        ($false) { $_ -split $Separator, $MaxCount, 'SimpleMatch' }
+                        ($true) { $_ -split $Separator, $MaxCount, 'SimpleMatch, IgnoreCase' }
                     }
 
                 }
