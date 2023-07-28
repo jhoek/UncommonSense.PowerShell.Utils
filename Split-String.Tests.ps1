@@ -49,7 +49,7 @@ Describe 'Split-String' {
         }
 
         It 'RegexMatch with MaxCount' {
-
+            "ABC1DEF2GHI3JKL" | Split-String -Separator '\d' -MaxCount 3 | Should -Be 'ABC', 'DEF', 'GHI3JKL'
         }
 
         It 'RegexMatch with MaxCount and IgnoreCase' {
