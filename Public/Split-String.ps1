@@ -1,5 +1,14 @@
 function Split-String
 {
+    # Parametersets:
+    # - ScriptBlock ($MaxCount is optional)
+    # - SimpleMatch ($MaxCount is optional)
+    # - RegexMatch
+    #   - RegexWithMaxCount ($MaxCount is mandatory)
+    #     - RegexWithMaxCountSingleLine ($MaxCount and $SingleLine mandatory; $MultiLine does not exist)
+    #     - RegexWithMaxCountMultiLine ($MaxCount and $MultiLine mandatory; $SingleLine does not exist)
+    #   - RegexWithoutMaxCount ($MaxCount does not exist; none of the options exist)
+
     [CmdletBinding(DefaultParameterSetName = 'RegexMatch')]
     param
     (
@@ -84,7 +93,10 @@ function Split-String
                     return ($CurrentInputObject -split $Separator, $MaxCount, $Options)
                 }
 
-
+                ($Options)
+                {
+                    Write-Error('')
+                }
 
                 default
                 {
