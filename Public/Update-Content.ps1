@@ -9,7 +9,7 @@ function Update-Content
         [string]$Encoding = 'UTF8NoBOM',
 
         [ValidateNotNull()]
-        [scriptblock]$Begin = {},
+        [scriptblock]$Begin = { param($Path) },
 
         [ValidateNotNull()]
         [scriptblock]$Process = { param($Line) $Line },
@@ -25,7 +25,7 @@ function Update-Content
         $Path.ForEach{
             $PSCmdlet.GetResolvedProviderPathFromPSPath($Path, [ref]$Provider)
             | ForEach-Object {
-                & $Begin
+                & $Begin -Path $_
 
                 Get-Content -Path $_ -Encoding $Encoding `
                 | ForEach-Object { & $Process -Line $_ } `
